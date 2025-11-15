@@ -8,3 +8,5 @@ change the type in package.json type: "module"
 date 15-11-25
 
 4. 43.36min Job.model.js creating
+
+5. 1:10min logout controller creating
