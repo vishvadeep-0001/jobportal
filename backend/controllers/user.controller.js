@@ -2,7 +2,7 @@ import { User } from "../model/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const register = async (req, res, next) => {
+export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
 
@@ -37,7 +37,7 @@ export const register = async (req, res, next) => {
   }
 };
 
-export const login = async (req, res, next) => {
+export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
 
@@ -102,6 +102,17 @@ export const login = async (req, res, next) => {
         success: true,
         user,
       });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+      message: "Logged out successfully",
+      success: true,
+    });
   } catch (error) {
     console.log(error);
   }
