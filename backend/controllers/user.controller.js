@@ -47,6 +47,7 @@ export const login = async (req, res) => {
         sucess: false,
       });
     }
+    console.log(email, password, role);
 
     let user = await User.findOne({ email });
 
