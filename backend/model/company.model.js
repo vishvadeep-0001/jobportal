@@ -12,7 +12,6 @@ const companySchema = new mongoose.Schema(
     },
     wesbite: {
       type: String,
-      required: true,
     },
     location: {
       type: String,
