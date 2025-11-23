@@ -1,4 +1,5 @@
 import { Job } from "../model/job.model.js";
+
 // Admin for post the job
 export const postJob = async (req, res) => {
   try {
@@ -7,37 +8,35 @@ export const postJob = async (req, res) => {
       description,
       requirements,
       salary,
+      experience,
       location,
       jobType,
-      experience,
       position,
       companyId,
     } = req.body;
-
     const userId = req.id;
 
     if (
       !title ||
       !description ||
-      !requirements ||
+      !companyId ||
       !salary ||
+      !requirements ||
       !location ||
       !jobType ||
       !experience ||
-      !position ||
-      !companyId
+      !position
     ) {
       return res.status(400).json({
-        message: "Something is missing",
+        message: "Something is missing.",
         success: false,
       });
     }
-
     const job = await Job.create({
       title,
       description,
+      salary,
       requirements: requirements.split(","),
-      salary: Number(salary),
       location,
       jobType,
       experienceLevel: experience,
@@ -46,7 +45,7 @@ export const postJob = async (req, res) => {
       created_by: userId,
     });
     return res.status(201).json({
-      message: "New job created successfully",
+      message: "New job created successfully.",
       job,
       success: true,
     });

@@ -1,4 +1,3 @@
-import { application } from "express";
 import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema(
@@ -55,5 +54,4 @@ const jobSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 export const Job = mongoose.model("Job", jobSchema);
