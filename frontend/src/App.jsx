@@ -1,7 +1,11 @@
-import React from "react";
+import Navbar from "./components/shared/Navbar.jsx";
 
 const App = () => {
-  return <h1 className="text-red-500">Let get job portal</h1>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
 
 export default App;
