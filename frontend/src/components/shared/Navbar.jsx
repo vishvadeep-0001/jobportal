@@ -8,9 +8,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const user = false;
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-26">
@@ -56,7 +58,7 @@ const Navbar = () => {
                     <AvatarImage src="https://github.com/shadcn.png" />
                   </Avatar>
                   <div>
-                    <h4 className="font-medium"> Yogesh Mernstack</h4>
+                    <h4 className="font-medium">{user.fullname}</h4>
                     <p className="text-sm text-muted-foreground">
                       Lorem ipsum clor sit cnet.
                     </p>
@@ -65,7 +67,9 @@ const Navbar = () => {
                 <div className="flex flex-col text-gray-600">
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <User2 />
-                    <Button variant="link">View Profile</Button>
+                    <Link to="/profile">
+                      <Button variant="link">View Profile</Button>
+                    </Link>
                   </div>
 
                   <div className="flex w-fit items-center gap-2 cursor-pointer">

@@ -5,6 +5,7 @@ import Home from "./components/Home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Jobs from "./components/Jobs.jsx";
 import Browse from "./components/Browse.jsx";
+import Profile from "./components/Profile.jsx";
 
 const appRouter = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/browse",
     element: <Browse />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

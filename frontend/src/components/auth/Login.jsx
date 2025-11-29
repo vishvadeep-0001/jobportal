@@ -10,7 +10,8 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 
 import { USER_API_END_POINT } from "../../utils/constant.js";
-import { setLoading } from "../../redux/authSlice.js";
+import { setLoading, setUser } from "../../redux/authSlice.js";
+
 import { Loader2 } from "lucide-react";
 
 const Login = () => {
@@ -40,10 +41,10 @@ const Login = () => {
       });
       if (res.data.success) {
         navigate("/");
+        dispatch(setUser(res.data.user));
         toast.success(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     } finally {
       dispatch(setLoading(false));
