@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Contact, Mail, Pen } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Label } from "./ui/label";
+import AppliedJobTable from "./AppliedJobTable";
 
 const skills = ["Html", "css", "javascript", "Reactjs"];
 const isResume = true;
@@ -22,8 +23,9 @@ const Profile = () => {
             <div>
               <h1 className="font-medium text-xl">Full Name</h1>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Eveniet, ratione?
+                Lorem ipsum dolor sit, amet consectetur Lorem ipsum dolor, sit
+                amet consectetur adipisicing elit. Corrupti, dicta. Eveniet,
+                ratione?
               </p>
             </div>
           </div>
@@ -65,10 +67,11 @@ const Profile = () => {
             <span>NA</span>
           )}
         </div>
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl">
-          <h1>Applied Jobs</h1>
-          {/* Application table */}
-        </div>
+      </div>
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl">
+        <h1 className="font-bold text-lg my-5">Applied Jobs</h1>
+        {/* Application table */}
+        <AppliedJobTable />
       </div>
     </div>
   );
