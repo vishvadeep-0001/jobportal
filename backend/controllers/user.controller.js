@@ -47,7 +47,6 @@ export const login = async (req, res) => {
         sucess: false,
       });
     }
-    console.log(email, password, role);
 
     let user = await User.findOne({ email });
 
@@ -128,7 +127,7 @@ export const updateProfile = async (req, res) => {
     // cloudinary
     let skillsArray;
     if (skills) {
-      skillsArray = JSON.stringify(skills).split(",");
+      skillsArray = skills.split(",");
     }
 
     const userId = req.id;
@@ -137,7 +136,7 @@ export const updateProfile = async (req, res) => {
     if (!user) {
       return res.status(400).json({
         message: "User not found",
-        success: true,
+        success: false,
       });
     }
 
@@ -152,6 +151,7 @@ export const updateProfile = async (req, res) => {
     // Resume comes later here....
 
     await user.save();
+
     user = {
       _id: user._id,
       fullname: user.fullname,
