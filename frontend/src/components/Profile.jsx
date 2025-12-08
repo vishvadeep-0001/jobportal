@@ -30,11 +30,7 @@ const Profile = () => {
               <h1 className="font-medium text-xl">
                 {user?.fullname || "fullname"}
               </h1>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur Lorem ipsum dolor, sit
-                amet consectetur adipisicing elit. Corrupti, dicta. Eveniet,
-                ratione?
-              </p>
+              <p>{user?.profile.bio || "Please add Bio.."}</p>
             </div>
           </div>
           <Button
@@ -48,18 +44,20 @@ const Profile = () => {
         <div className="my-5">
           <div className="flex items-center gap-3 my-2">
             <Mail />
-            <span>yash@gmail.com</span>
+            <span> {user?.email || "email"}</span>
           </div>
           <div className="flex items-center gap-3 my-2">
             <Contact />
-            <span>881028159</span>
+            <span> {user?.phoneNumber || "phone no"}</span>
           </div>
         </div>
         <div className="my-5">
           <h1>Skills</h1>
           <div className="flex items-center gap-1">
-            {skills.length !== 0 ? (
-              skills.map((item, index) => <Badge key={index}>{item}</Badge>)
+            {user?.profile.skills.length !== 0 ? (
+              user?.profile.skills.map((item, index) => (
+                <Badge key={index}>{item}</Badge>
+              ))
             ) : (
               <span>NA</span>
             )}
