@@ -24,7 +24,7 @@ const Profile = () => {
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="https://img.freepik.com/premium-vector/creative-elegant-abstract-minimalistic-logo-design-vector-any-brand-company_1253202-137644.jpg?semt=ais_hybrid&w=740&q=80" />
+              <AvatarImage src={user?.profile.profilePhoto} />
             </Avatar>
             <div>
               <h1 className="font-medium text-xl">
