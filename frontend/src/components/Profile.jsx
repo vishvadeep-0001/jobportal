@@ -71,7 +71,7 @@ const Profile = () => {
               className="text-blue-500 w-full hover:underline cursor-pointer"
               href="https://youtube.com/@patelmerstack"
             >
-              Resume
+              {user?.profile.resumeOriginalName || "Resume Link"}
             </a>
           ) : (
             <span>NA</span>
