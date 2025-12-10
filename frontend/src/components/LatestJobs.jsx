@@ -1,7 +1,8 @@
+import { useSelector } from "react-redux";
 import LatestJobCards from "./LatestJobCards";
-const randomJobs = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const LatestJobs = () => {
+  const { alljobs } = useSelector((state) => state.job);
   return (
     <div className="max-w-7xl mx-auto my-20">
       <h1 className="text-4xl font-bold">
@@ -9,9 +10,13 @@ const LatestJobs = () => {
         Job Openings
       </h1>
       <div className="grid grid-cols-3 gap-4 my-5">
-        {randomJobs.slice(0, 6).map((item, index) => (
-          <LatestJobCards key={index} />
-        ))}
+        {alljobs.length <= 0 ? (
+          <span>No jobs availabel</span>
+        ) : (
+          alljobs
+            ?.slice(0, 6)
+            .map((job, index) => <LatestJobCards key={job._id} job={job} />)
+        )}
       </div>
     </div>
   );
