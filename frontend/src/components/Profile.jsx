@@ -64,12 +64,12 @@ const Profile = () => {
           </div>
         </div>
         <div className="w-full grid max-w-sm items-center gap-1.5">
-          <Label className="text-md font-bold"></Label>
+          <Label className="text-md font-bold">Resume</Label>
           {isResume ? (
             <a
               target="_blank"
               className="text-blue-500 w-full hover:underline cursor-pointer"
-              href="https://youtube.com/@patelmerstack"
+              href={user?.profile.resume}
             >
               {user?.profile.resumeOriginalName || "Resume Link"}
             </a>

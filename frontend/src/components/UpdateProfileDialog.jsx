@@ -21,7 +21,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  console.log(user);
   const [input, setInput] = useState({
     fullname: user?.fullname,
     email: user?.email,
@@ -70,7 +69,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         toast.success(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     } finally {
       setLoading(false);
