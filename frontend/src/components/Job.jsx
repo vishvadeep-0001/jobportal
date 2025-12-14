@@ -5,17 +5,24 @@ import { Avatar } from "./ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
 import { Badge } from "./ui/badge";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const Job = ({ job }) => {
   const navigate = useNavigate();
-  console.log(job);
+
+  const daysAgoFunction = (mongodbTime) => {
+    const createdAt = new Date(mongodbTime);
+    const currentTime = new Date();
+    const timeDifference = currentTime - createdAt;
+    return Math.floor(timeDifference / (1000 * 24 * 60 * 60));
+  };
 
   return (
     <div className="p-5 rounded-md shadow-xl bg-white border border-gray-200">
       <div className="flex items-center justify-between">
         <p className="text-sm text-gray-500">
-          {/* {new Date(job?.createdAt.toLocaleString())} */}
+          {daysAgoFunction(job?.createdAt) === 0
+            ? "Today"
+            : `${daysAgoFunction(job?.createdAt)} days ago`}
         </p>
         <Button className="rounded-full" variant="outline" size="icon">
           <Bookmark />

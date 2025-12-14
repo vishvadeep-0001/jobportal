@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const Jobs = () => {
   const { alljobs } = useSelector((state) => state.job);
-  // console.log(alljobs);
   return (
     <div>
       <Navbar />

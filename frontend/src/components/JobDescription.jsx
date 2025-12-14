@@ -8,13 +8,16 @@ import { setSingleJob } from "@/redux/jobSlice";
 import { JOB_API_END_POINT } from "@/utils/constant";
 
 const JobDescription = () => {
-  const isApplied = false;
+  const { user } = useSelector((state) => state.auth);
+  const { singleJob } = useSelector((state) => state.job);
+  const isApplied =
+    singleJob?.applications?.some(
+      (application) => application.applicant === user?._id
+    ) || false;
+
   const params = useParams();
   const jobId = params.id;
   const dispatch = useDispatch();
-
-  const { singleJob } = useSelector((state) => state.job);
-  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const fetchSingleJob = async () => {
@@ -97,11 +100,15 @@ const JobDescription = () => {
         </h1>
         <h1 className="font-bold my-1 ">
           Total Applicant :
-          <span className="pl-4 font-normal text-gray-800">4</span>
+          <span className="pl-4 font-normal text-gray-800">
+            {singleJob?.applications.length}
+          </span>
         </h1>
         <h1 className="font-bold my-1 ">
           Posted Date :
-          <span className="pl-4 font-normal text-gray-800">29-11-2025</span>
+          <span className="pl-4 font-normal text-gray-800">
+            {singleJob?.createdAt.split("T")[0]}
+          </span>
         </h1>
       </div>
     </div>
