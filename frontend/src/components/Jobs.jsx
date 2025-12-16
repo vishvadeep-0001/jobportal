@@ -21,8 +21,8 @@ const Jobs = () => {
             <div className="flex-1 h-[88vh] overflow-y-auto pb-5">
               <div className="grid grid-cols-3 gap-4">
                 {alljobs.map((job) => (
-                  <div key={job?._id}>
-                    <Job job={job} />
+                  <div>
+                    <Job job={job} key={job?._id} />
                   </div>
                 ))}
               </div>
