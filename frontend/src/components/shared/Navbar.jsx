@@ -45,16 +45,33 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-2">
           <ul className="flex font-medium items-center gap-5">
-            <li>
-              {" "}
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/jobs">Jobs</Link>
-            </li>
-            <li>
-              <Link to="/browse">Browse</Link>
-            </li>
+            {user && user.role === "recruiter" ? (
+              <>
+                <li>
+                  <Link to="/admin/companies">Companies</Link>
+                </li>
+                <li>
+                  <Link to="/admin/jobs">Jobs</Link>
+                </li>
+                <li>
+                  <Link to="/logout" onClick={logouthandle}>
+                    Logout
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/jobs">Jobs</Link>
+                </li>
+                <li>
+                  <Link to="/browse">Browse</Link>
+                </li>
+              </>
+            )}
           </ul>
           {!user ? (
             <div className="flex items-center gap-2">
@@ -80,19 +97,21 @@ const Navbar = () => {
                     <AvatarImage src={user?.profile.profilePhoto} />
                   </Avatar>
                   <div>
-                    <h4 className="font-medium">{user.fullname}</h4>
+                    <h4 className="font-medium">{user?.fullname}</h4>
                     <p className="text-sm text-muted-foreground">
-                      Lorem ipsum clor sit cnet.
+                      {user?.profile?.bio}
                     </p>
                   </div>
                 </div>
                 <div className="flex flex-col text-gray-600">
-                  <div className="flex w-fit items-center gap-2 cursor-pointer">
-                    <User2 />
-                    <Link to="/profile">
-                      <Button variant="link">View Profile</Button>
-                    </Link>
-                  </div>
+                  {user && user.role === "student" && (
+                    <div className="flex w-fit items-center gap-2 cursor-pointer">
+                      <User2 />
+                      <Link to="/profile">
+                        <Button variant="link">View Profile</Button>
+                      </Link>
+                    </div>
+                  )}
 
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <LogOut />
