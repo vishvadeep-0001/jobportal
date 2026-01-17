@@ -3,6 +3,7 @@ import LatestJobCards from "./LatestJobCards";
 
 const LatestJobs = () => {
   const { alljobs } = useSelector((state) => state.job);
+  console.log(alljobs);
   return (
     <div className="max-w-7xl mx-auto my-20">
       <h1 className="text-4xl font-bold">
