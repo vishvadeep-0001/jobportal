@@ -14,11 +14,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const AdminJobsTable = () => {
-  // const { companies, searchCompanyByText } = useSelector(
-  //   (state) => state.company,
-  // );
   const { allAdminJobs, searchJobByText } = useSelector((store) => store.job);
-  console.log(allAdminJobs);
+
   const [filterJobs, setFilterJobs] = useState(allAdminJobs);
   const navigate = useNavigate();
 
@@ -29,7 +26,9 @@ const AdminJobsTable = () => {
         if (!searchJobByText) {
           return true;
         }
-        return job?.name?.toLowerCase().includes(searchJobByText.toLowerCase());
+        return job?.title
+          ?.toLowerCase()
+          .includes(searchJobByText.toLowerCase());
       });
     setFilterJobs(filteredJobs);
   }, [allAdminJobs, searchJobByText]);
@@ -50,8 +49,8 @@ const AdminJobsTable = () => {
         <TableBody>
           {filterJobs?.map((job) => (
             <TableRow key={job._id}>
-              <TableCell></TableCell>
-              <TableCell>{job?.name}</TableCell>
+              <TableCell>{job?.company?.name}</TableCell>
+              <TableCell>{job?.title}</TableCell>
               <TableCell>{job?.createdAt.split("T")[0]}</TableCell>
               <TableCell className="text-right">
                 <Popover>
