@@ -9,6 +9,7 @@ import {
 } from "./ui/carousel";
 import { useNavigate } from "react-router-dom";
 import { setSearchedQuery } from "@/redux/jobSlice";
+
 const category = [
   "Frontend Developer",
   "Backend Developer",
