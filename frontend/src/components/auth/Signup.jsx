@@ -4,7 +4,7 @@ import { RadioGroup } from "@/components/ui/radio-group";
 import { Button } from "../ui/button";
 import Navbar from "../shared/Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "../../utils/constant.js";
@@ -13,7 +13,7 @@ import { setLoading } from "../../redux/authSlice.js";
 import { Loader2 } from "lucide-react";
 
 const Signup = () => {
-  const { loading } = useSelector((state) => state.auth);
+  const { loading, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -62,6 +62,11 @@ const Signup = () => {
       dispatch(setLoading(false));
     }
   };
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  });
   return (
     <div>
       <Navbar />

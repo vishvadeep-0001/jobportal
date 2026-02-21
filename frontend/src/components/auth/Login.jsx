@@ -4,7 +4,7 @@ import { RadioGroup } from "@/components/ui/radio-group";
 import { Button } from "../ui/button";
 import Navbar from "../shared/Navbar";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,7 @@ const Login = () => {
     password: "",
     role: "",
   });
-  const { loading } = useSelector((state) => state.auth);
+  const { loading, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -50,6 +50,11 @@ const Login = () => {
       dispatch(setLoading(false));
     }
   };
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  });
   return (
     <div>
       <Navbar />
