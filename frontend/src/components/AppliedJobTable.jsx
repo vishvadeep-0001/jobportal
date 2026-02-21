@@ -27,16 +27,24 @@ const AppliedJobTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {allAppliedJobs.map((apply) => (
-            <TableRow key={apply?._id}>
-              <TableCell>{apply?.createdAt?.split("T")[0]}</TableCell>
-              <TableCell>{apply?.job?.title}</TableCell>
-              <TableCell>{apply?.job?.company?.name}</TableCell>
-              <TableCell className="text-right">
-                <Badge>{apply?.status}</Badge>
-              </TableCell>
-            </TableRow>
-          ))}
+          {allAppliedJobs.length <= 0 ? (
+            <span>You have'nt applied any job yet.</span>
+          ) : (
+            allAppliedJobs.map((apply) => (
+              <TableRow key={apply?._id}>
+                <TableCell>{apply?.createdAt?.split("T")[0]}</TableCell>
+                <TableCell>{apply?.job?.title}</TableCell>
+                <TableCell>{apply?.job?.company?.name}</TableCell>
+                <TableCell className="text-right">
+                  <Badge
+                    className={`${apply?.status === "rejected" ? "bg-red-400" : apply?.status === "pending" ? "bg-gray-400" : "bg-green-400"}`}
+                  >
+                    {apply?.status.toUpperCase()}
+                  </Badge>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </div>

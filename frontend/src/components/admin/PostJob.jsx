@@ -114,6 +114,7 @@ const PostJob = () => {
               <Input
                 type="text"
                 name="salary"
+                placeholder="In LPA"
                 value={input.salary}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
@@ -134,6 +135,7 @@ const PostJob = () => {
               <Input
                 type="text"
                 name="jobType"
+                placeholder="Permanent / Contract"
                 value={input.jobType}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
@@ -168,7 +170,10 @@ const PostJob = () => {
                   <SelectGroup>
                     {companies.map((company) => {
                       return (
-                        <SelectItem value={company?.name?.toLowerCase()}>
+                        <SelectItem
+                          key={company?._id}
+                          value={company?.name?.toLowerCase()}
+                        >
                           {company.name}
                         </SelectItem>
                       );

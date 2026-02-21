@@ -1,7 +1,20 @@
 import { Search } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchedQuery } from "@/redux/jobSlice";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const searchJobHandler = () => {
+    dispatch(setSearchedQuery(query));
+    navigate("/browse");
+  };
+
   return (
     <div className="text-center">
       <div className="flex flex-col gap-5 my-2">
@@ -21,8 +34,12 @@ const HeroSection = () => {
             type="text"
             className="outline-none border-none w-full "
             placeholder="Find your dream jobs"
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <Button className="rounded-r-full bg-[#6a38c2]">
+          <Button
+            onClick={searchJobHandler}
+            className="rounded-r-full bg-[#6a38c2]"
+          >
             <Search className="h-5 w-5" />
           </Button>
         </div>
